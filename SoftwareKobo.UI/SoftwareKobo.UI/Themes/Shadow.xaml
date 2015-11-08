@@ -6,9 +6,10 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Shadow">
-                    <Grid>
+                    <Grid Margin="{TemplateBinding Padding}">
                         <win2d:CanvasControl x:Name="PART_CanvasControl" />
-                        <ContentControl Content="{TemplateBinding Content}" />
+                        <ContentControl Content="{TemplateBinding Content}"
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

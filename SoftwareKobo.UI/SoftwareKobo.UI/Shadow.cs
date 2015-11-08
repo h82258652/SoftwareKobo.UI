@@ -22,10 +22,9 @@ namespace SoftwareKobo.UI
     public class Shadow : Control
     {
         public static readonly DependencyProperty BlurAmountProperty = DependencyProperty.Register(nameof(BlurAmount), typeof(float), typeof(Shadow), new PropertyMetadata(2.0f));
-
         public static readonly DependencyProperty ColorProperty = DependencyProperty.Register(nameof(Color), typeof(Color), typeof(Shadow), new PropertyMetadata(Colors.Black));
-
         public static readonly DependencyProperty ContentProperty = DependencyProperty.Register(nameof(Content), typeof(FrameworkElement), typeof(Shadow), new PropertyMetadata(null, ContentChanged));
+        public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.Register(nameof(ContentTemplate), typeof(DataTemplate), typeof(Shadow), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DepthProperty = DependencyProperty.Register(nameof(Depth), typeof(double), typeof(Shadow), new PropertyMetadata(2.0d, DepthChanged));
 
@@ -82,6 +81,18 @@ namespace SoftwareKobo.UI
             set
             {
                 this.SetValue(ContentProperty, value);
+            }
+        }
+
+        public DataTemplate ContentTemplate
+        {
+            get
+            {
+                return (DataTemplate)this.GetValue(ContentTemplateProperty);
+            }
+            set
+            {
+                this.SetValue(ContentTemplateProperty, value);
             }
         }
 
