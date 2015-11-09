@@ -13,6 +13,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace SoftwareKobo.UI
@@ -22,9 +23,14 @@ namespace SoftwareKobo.UI
     public class Shadow : Control
     {
         public static readonly DependencyProperty BlurAmountProperty = DependencyProperty.Register(nameof(BlurAmount), typeof(float), typeof(Shadow), new PropertyMetadata(2.0f));
+
         public static readonly DependencyProperty ColorProperty = DependencyProperty.Register(nameof(Color), typeof(Color), typeof(Shadow), new PropertyMetadata(Colors.Black));
+
         public static readonly DependencyProperty ContentProperty = DependencyProperty.Register(nameof(Content), typeof(FrameworkElement), typeof(Shadow), new PropertyMetadata(null, ContentChanged));
+
         public static readonly DependencyProperty ContentTemplateProperty = DependencyProperty.Register(nameof(ContentTemplate), typeof(DataTemplate), typeof(Shadow), new PropertyMetadata(null));
+
+        public static readonly DependencyProperty ContentTransitionsProperty = DependencyProperty.Register(nameof(ContentTransitions), typeof(TransitionCollection), typeof(Shadow), new PropertyMetadata(null));
 
         public static readonly DependencyProperty DepthProperty = DependencyProperty.Register(nameof(Depth), typeof(double), typeof(Shadow), new PropertyMetadata(2.0d, DepthChanged));
 
@@ -93,6 +99,18 @@ namespace SoftwareKobo.UI
             set
             {
                 this.SetValue(ContentTemplateProperty, value);
+            }
+        }
+
+        public TransitionCollection ContentTransitions
+        {
+            get
+            {
+                return (TransitionCollection)this.GetValue(ContentTransitionsProperty);
+            }
+            set
+            {
+                this.SetValue(ContentTransitionsProperty, value);
             }
         }
 

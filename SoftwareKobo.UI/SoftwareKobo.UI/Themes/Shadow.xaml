@@ -9,7 +9,8 @@
                     <Grid Margin="{TemplateBinding Padding}">
                         <win2d:CanvasControl x:Name="PART_CanvasControl" />
                         <ContentControl Content="{TemplateBinding Content}"
-                                        ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                        ContentTemplate="{TemplateBinding ContentTemplate}"
+                                        ContentTransitions="{TemplateBinding ContentTransitions}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
