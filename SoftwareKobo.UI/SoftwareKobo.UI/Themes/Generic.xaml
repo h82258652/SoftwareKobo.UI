@@ -4,4 +4,18 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ms-appx:///SoftwareKobo.UI/Themes/Shadow.xaml" />
     </ResourceDictionary.MergedDictionaries>
+
+    <Style TargetType="local2:Button" xmlns:local2="using:SoftwareKobo.UI.Xaml.Controls">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local2:Button">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
