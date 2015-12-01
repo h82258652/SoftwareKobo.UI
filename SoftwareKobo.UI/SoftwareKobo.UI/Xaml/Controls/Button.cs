@@ -18,6 +18,10 @@ namespace SoftwareKobo.UI.Xaml.Controls
 {
     public class Button : ButtonBase
     {
+        // TODO
+        // Ripple
+        // Shadow
+
         public Button()
         {
             this.DefaultStyleKey = typeof(Button);
