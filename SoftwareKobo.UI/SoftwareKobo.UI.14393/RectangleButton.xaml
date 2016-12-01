@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:SoftwareKobo.UI">
+    <Style TargetType="local:RectangleButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:RectangleButton">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver" />
+                                <VisualState x:Name="Pressed" />
+                                <VisualState x:Name="Disabled" />
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Rectangle Fill="{TemplateBinding Background}"
+                                   RadiusX="{TemplateBinding RadiusX}"
+                                   RadiusY="{TemplateBinding RadiusY}" />
+                        <Rectangle Fill="{TemplateBinding PointerOverBrush}"
+                                   RadiusX="{TemplateBinding RadiusX}"
+                                   RadiusY="{TemplateBinding RadiusY}" />
+                        <Rectangle Fill="{TemplateBinding PressedBrush}"
+                                   RadiusX="{TemplateBinding RadiusX}"
+                                   RadiusY="{TemplateBinding RadiusY}" />
+                        <ContentPresenter />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

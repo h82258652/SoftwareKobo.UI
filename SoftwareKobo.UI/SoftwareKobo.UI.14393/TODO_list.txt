@@ -1,0 +1,38 @@
+﻿Shadow:
+	(Child only Shape/TextBlock/Image)
+
+RectangleButton:
+	Shadows Properties
+	PerformClick()
+	PointerOverBackground
+	PressedBackground
+	DisabledBackground
+	PointerOverForeground
+	PressedForeground
+	DisabledForeground
+
+CircleButton:
+	Shadows Properties
+	PerformClick()	
+	PointerOverBackground
+	PressedBackground
+	DisabledBackground
+	PointerOverForeground
+	PressedForeground
+	DisabledForeground
+
+ToggleSwitch:
+	new template
+
+ProgressRing:
+	new template
+	Value
+
+CheckBox:
+	new template
+
+SplitView:
+	rewrite form ContentControl
+
+WrapPanel:
+	from wpf
