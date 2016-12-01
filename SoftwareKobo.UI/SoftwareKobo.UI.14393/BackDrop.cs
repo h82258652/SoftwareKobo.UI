@@ -82,7 +82,8 @@ namespace SoftwareKobo.UI
                 Name = "BlurEffect",
                 BlurAmount = (float)BlurAmount,
                 Optimization = EffectOptimization.Balanced,
-                Source = new CompositionEffectSourceParameter("Source")
+                Source = new CompositionEffectSourceParameter("Source"),
+                BorderMode = EffectBorderMode.Hard
             };
             var colorEffect = new ColorSourceEffect()
             {
