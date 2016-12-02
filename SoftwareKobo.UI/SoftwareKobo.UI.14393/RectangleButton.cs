@@ -2,71 +2,91 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Automation.Peers;
 using Windows.UI.Xaml.Automation.Provider;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
 
 namespace SoftwareKobo.UI
 {
+    [TemplatePart(Name = ContentPresenterTemplateName, Type = typeof(ContentPresenter))]
     public class RectangleButton : ButtonBase, IButton
     {
-        public static readonly DependencyProperty PointerOverBrushProperty = DependencyProperty.Register(nameof(PointerOverBrush), typeof(Brush), typeof(RectangleButton), new PropertyMetadata(default(Brush)));
+        public new static readonly DependencyProperty BorderThicknessProperty = DependencyProperty.Register(nameof(BorderThickness), typeof(double), typeof(RectangleButton), new PropertyMetadata(default(double)));
 
-        public static readonly DependencyProperty PressedBrushProperty = DependencyProperty.Register(nameof(PressedBrush), typeof(Brush), typeof(RectangleButton), new PropertyMetadata(default(Brush)));
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(nameof(CornerRadius), typeof(double), typeof(RectangleButton), new PropertyMetadata(default(double), CornerRadiusChanged));
 
-        public static readonly DependencyProperty RadiusXProperty = DependencyProperty.Register(nameof(RadiusX), typeof(double), typeof(RectangleButton), new PropertyMetadata(default(double)));
+        public static readonly DependencyProperty DisabledBackgroundProperty = DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(RectangleButton), new PropertyMetadata(default(Brush)));
 
-        public static readonly DependencyProperty RadiusYProperty = DependencyProperty.Register(nameof(RadiusY), typeof(double), typeof(RectangleButton), new PropertyMetadata(default(double)));
+        public static readonly DependencyProperty PointerOverBackgroundProperty = DependencyProperty.Register(nameof(PointerOverBackground), typeof(Brush), typeof(RectangleButton), new PropertyMetadata(default(Brush)));
+
+        public static readonly DependencyProperty PressedBackgroundProperty = DependencyProperty.Register(nameof(PressedBackground), typeof(Brush), typeof(RectangleButton), new PropertyMetadata(default(Brush)));
+
+        private const string ContentPresenterTemplateName = "PART_ContentPresenter";
+
+        private ContentPresenter _contentPresenter;
 
         public RectangleButton()
         {
             DefaultStyleKey = typeof(RectangleButton);
         }
 
-        public Brush PointerOverBrush
+        public new double BorderThickness
         {
             get
             {
-                return (Brush)GetValue(PointerOverBrushProperty);
+                return (double)GetValue(BorderThicknessProperty);
             }
             set
             {
-                SetValue(PointerOverBrushProperty, value);
+                SetValue(BorderThicknessProperty, value);
             }
         }
 
-        public Brush PressedBrush
+        public double CornerRadius
         {
             get
             {
-                return (Brush)GetValue(PressedBrushProperty);
+                return (double)GetValue(CornerRadiusProperty);
             }
             set
             {
-                SetValue(PressedBrushProperty, value);
+                SetValue(CornerRadiusProperty, value);
             }
         }
 
-        public double RadiusX
+        public Brush DisabledBackground
         {
             get
             {
-                return (double)GetValue(RadiusXProperty);
+                return (Brush)GetValue(DisabledBackgroundProperty);
             }
             set
             {
-                SetValue(RadiusXProperty, value);
+                SetValue(DisabledBackgroundProperty, value);
             }
         }
 
-        public double RadiusY
+        public Brush PointerOverBackground
         {
             get
             {
-                return (double)GetValue(RadiusYProperty);
+                return (Brush)GetValue(PointerOverBackgroundProperty);
             }
             set
             {
-                SetValue(RadiusYProperty, value);
+                SetValue(PointerOverBackgroundProperty, value);
+            }
+        }
+
+        public Brush PressedBackground
+        {
+            get
+            {
+                return (Brush)GetValue(PressedBackgroundProperty);
+            }
+            set
+            {
+                SetValue(PressedBackgroundProperty, value);
             }
         }
 
@@ -78,6 +98,28 @@ namespace SoftwareKobo.UI
             var invokeProvider = (IInvokeProvider)automationPeer.GetPattern(PatternInterface.Invoke);
             Debug.Assert(invokeProvider != null);
             invokeProvider.Invoke();
+        }
+
+        protected override void OnApplyTemplate()
+        {
+            base.OnApplyTemplate();
+
+            _contentPresenter = (ContentPresenter)GetTemplateChild(ContentPresenterTemplateName);
+            UpdateCornerRadius();
+        }
+
+        private static void CornerRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var obj = (RectangleButton)d;
+            obj.UpdateCornerRadius();
+        }
+
+        private void UpdateCornerRadius()
+        {
+            if (_contentPresenter != null)
+            {
+                _contentPresenter.CornerRadius = new CornerRadius(CornerRadius);
+            }
         }
     }
 }

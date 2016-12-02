@@ -14,16 +14,31 @@
                                 <VisualState x:Name="Disabled" />
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Rectangle Fill="{TemplateBinding Background}"
-                                   RadiusX="{TemplateBinding RadiusX}"
-                                   RadiusY="{TemplateBinding RadiusY}" />
-                        <Rectangle Fill="{TemplateBinding PointerOverBrush}"
-                                   RadiusX="{TemplateBinding RadiusX}"
-                                   RadiusY="{TemplateBinding RadiusY}" />
-                        <Rectangle Fill="{TemplateBinding PressedBrush}"
-                                   RadiusX="{TemplateBinding RadiusX}"
-                                   RadiusY="{TemplateBinding RadiusY}" />
-                        <ContentPresenter />
+                        <Rectangle x:Name="BackgroundRectangle"
+                                   Fill="{TemplateBinding Background}"
+                                   RadiusX="{TemplateBinding CornerRadius}"
+                                   RadiusY="{TemplateBinding CornerRadius}" />
+                        <Rectangle x:Name="PointerOverBackgroundRectangle"
+                                   Fill="{TemplateBinding PointerOverBackground}"
+                                   Opacity="0"
+                                   RadiusX="{TemplateBinding CornerRadius}"
+                                   RadiusY="{TemplateBinding CornerRadius}" />
+                        <Rectangle Fill="{TemplateBinding PressedBackground}"
+                                   Opacity="0"
+                                   RadiusX="{TemplateBinding CornerRadius}"
+                                   RadiusY="{TemplateBinding CornerRadius}" />
+                        <Rectangle Fill="{TemplateBinding DisabledBackground}"
+                                   Opacity="0"
+                                   RadiusX="{TemplateBinding CornerRadius}"
+                                   RadiusY="{TemplateBinding CornerRadius}" />
+                        <ContentPresenter x:Name="PART_ContentPresenter"
+                                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          AutomationProperties.AccessibilityView="Raw"
+                                          Content="{TemplateBinding Content}"
+                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                          ContentTransitions="{TemplateBinding ContentTransitions}"
+                                          Padding="{TemplateBinding Padding}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
